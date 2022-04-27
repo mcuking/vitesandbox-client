@@ -1,0 +1,36 @@
+{
+  "name": "vitesandbox-client",
+  "version": "0.0.1",
+  "description": "online sandbox based on vite",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --open",
+    "build": "webpack",
+    "lint": "eslint src/** --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcuking/vitesandbox-client.git"
+  },
+  "keywords": [
+    "sandbox",
+    "vite"
+  ],
+  "author": "mucking",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcuking/vitesandbox-client/issues"
+  },
+  "homepage": "https://github.com/mcuking/vitesandbox-client#readme",
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {
+    "workbox-routing": "^6.5.3",
+    "workbox-window": "^6.5.3"
+  }
+}
