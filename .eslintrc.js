@@ -13,7 +13,15 @@ module.exports = {
     quotes: ['error', 'single'],
     indent: ['error', 2],
     'eol-last': ['error', 'always'],
-    'comma-dangle': ['error', 'never']
+    'comma-dangle': ['error', 'never'],
+    'no-empty': ['warn', { allowEmptyCatch: true }],
+    'no-multi-spaces': 2,
+    'prefer-const': [
+      'warn',
+      {
+        destructuring: 'all'
+      }
+    ],
   }
 };
 
