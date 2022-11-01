@@ -1,0 +1,19 @@
+diff --git a/node_modules/path-browserify/index.js b/node_modules/path-browserify/index.js
+index 2423528..50c120c 100644
+--- a/node_modules/path-browserify/index.js
++++ b/node_modules/path-browserify/index.js
+@@ -520,8 +520,12 @@ var posix = {
+ 
+   sep: '/',
+   delimiter: ':',
+-  win32: null,
+-  posix: null
++  win32: {
++    sep: '/'
++  },
++  posix: {
++    sep: '/'
++  }
+ };
+ 
+ posix.posix = posix;

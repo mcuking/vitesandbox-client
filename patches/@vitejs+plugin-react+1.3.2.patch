@@ -1,0 +1,63 @@
+diff --git a/node_modules/@vitejs/plugin-react/dist/index.js b/node_modules/@vitejs/plugin-react/dist/index.js
+index 920ef68..be8a877 100644
+--- a/node_modules/@vitejs/plugin-react/dist/index.js
++++ b/node_modules/@vitejs/plugin-react/dist/index.js
+@@ -179,10 +179,8 @@ var import_resolve = __toESM(require("resolve"));
+ 
+ // src/fast-refresh.ts
+ var import_fs = __toESM(require("fs"));
+-var import_path = __toESM(require("path"));
+ var runtimePublicPath = "/@react-refresh";
+-var reactRefreshDir = import_path.default.dirname(require.resolve("react-refresh/package.json"));
+-var runtimeFilePath = import_path.default.join(reactRefreshDir, "cjs/react-refresh-runtime.development.js");
++var runtimeFilePath = "/node_modules/react-refresh/cjs/react-refresh-runtime.development.js"
+ var runtimeCode = `
+ const exports = {}
+ ${import_fs.default.readFileSync(runtimeFilePath, "utf-8")}
+@@ -396,7 +394,7 @@ function viteReact(opts = {}) {
+           if (isReactModule && filter(id)) {
+             useFastRefresh = true;
+             plugins.push([
+-              await loadPlugin("react-refresh/babel"),
++              await loadPlugin1(),
+               { skipEnvCheck: true }
+             ]);
+           }
+@@ -407,7 +405,7 @@ function viteReact(opts = {}) {
+             const [restoredAst, isCommonJS] = !isProjectFile && !isJSX ? await restoreJSX(babel, code, id) : [null, false];
+             if (isJSX || (ast = restoredAst)) {
+               plugins.push([
+-                await loadPlugin("@babel/plugin-transform-react-jsx" + (isProduction ? "" : "-development")),
++                await loadPlugin2(),
+                 {
+                   runtime: "automatic",
+                   importSource: opts.jsxImportSource,
+@@ -420,7 +418,7 @@ function viteReact(opts = {}) {
+             }
+           } else if (isProjectFile) {
+             if (!isProduction) {
+-              plugins.push(await loadPlugin("@babel/plugin-transform-react-jsx-self"), await loadPlugin("@babel/plugin-transform-react-jsx-source"));
++              plugins.push(await loadPlugin3(), await loadPlugin4());
+             }
+             if (!skipReactImport && !importReactRE.test(code)) {
+               code = `import React from 'react'; ` + code;
+@@ -537,8 +535,17 @@ function viteReact(opts = {}) {
+   return [viteBabel, viteReactRefresh, useAutomaticRuntime && viteReactJsx];
+ }
+ viteReact.preambleCode = preambleCode;
+-function loadPlugin(path2) {
+-  return Promise.resolve().then(() => __toESM(require(path2))).then((module2) => module2.default || module2);
++function loadPlugin1() {
++  return Promise.resolve().then(() => __toESM(require("react-refresh/babel"))).then((module2) => module2.default || module2);
++}
++function loadPlugin2() {
++  return Promise.resolve().then(() => __toESM(require("@babel/plugin-transform-react-jsx/lib/index.js"))).then((module2) => module2.default || module2);
++}
++function loadPlugin3() {
++  return Promise.resolve().then(() => __toESM(require("@babel/plugin-transform-react-jsx-self/lib/index.js"))).then((module2) => module2.default || module2);
++}
++function loadPlugin4() {
++  return Promise.resolve().then(() => __toESM(require("@babel/plugin-transform-react-jsx-source/lib/index.js"))).then((module2) => module2.default || module2);
+ }
+ // Annotate the CommonJS export names for ESM import in node:
+ 0 && (module.exports = {});
