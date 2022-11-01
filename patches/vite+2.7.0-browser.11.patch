@@ -1,0 +1,13 @@
+diff --git a/node_modules/vite/dist/browser/index.js b/node_modules/vite/dist/browser/index.js
+index 960918e..870cf54 100644
+--- a/node_modules/vite/dist/browser/index.js
++++ b/node_modules/vite/dist/browser/index.js
+@@ -1607,7 +1607,7 @@ async function rebaseUrls(file, rootFile, alias) {
+ }
+ // .less
+ const less = async (source, root, options, resolvers) => {
+-    const nodeLess = loadPreprocessor("less" /* less */, root);
++    const nodeLess = require('less/index.js');
+     const viteResolverPlugin = createViteLessPlugin(nodeLess, options.filename, options.alias, resolvers);
+     source = await getSource(source, options.filename, options.additionalData);
+     let result;
