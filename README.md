@@ -13,6 +13,8 @@ https://mcuking.github.io/vitesandbox-client-example/
 Usage Example Code:
 
 ```js
+import Sandbox from './sandbox';
+
 const files = {
   '/package.json': JSON.stringify(packageJson),
   '/index.html': htmlCode,
@@ -22,8 +24,8 @@ const files = {
 };
 
 <Sandbox
-    bundlerURL="https://mcuking.github.io/vitesandbox-client/"
-    files={files} />
+  bundlerURL="https://mcuking.github.io/vitesandbox-client/"
+  files={files} />
 ```
 
 For more details, please check this repo: https://github.com/mcuking/vitesandbox-client-example
