@@ -1,0 +1,2 @@
+(self.webpackChunkvitesandbox_client=self.webpackChunkvitesandbox_client||[]).push([[243,747],{63248:e=>{function n(e){var n=new Error("Cannot find module '"+e+"'");throw n.code="MODULE_NOT_FOUND",n}n.keys=()=>[],n.resolve=n,n.id=63248,e.exports=n},22868:()=>{},99830:()=>{},70209:()=>{}}]);
+//# sourceMappingURL=243.fccd2cacb.chunk.js.map
