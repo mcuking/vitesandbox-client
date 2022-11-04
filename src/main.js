@@ -2,13 +2,6 @@ import { Workbox } from 'workbox-window';
 import Channel from '$utils/channel';
 import MD5 from 'crypto-js/md5';
 
-const transformFiles = (files) => {
-  Object.keys(files).forEach((filename) => {
-    files[filename] = files[filename]?.code;
-  });
-  return files;
-};
-
 class SandboxClient {
   constructor(code, busid, wcid) {
     this.channel = new Channel(busid);
@@ -32,7 +25,7 @@ class SandboxClient {
       case 'compile-context-inited': {
         // vite worker 初始化编译环境后，动态创建 iframe 用于加载被构建应用的页面
         const iframe = document.createElement('iframe');
-        iframe.src = `/${busid}/vite/${wcid}/`;
+        iframe.src = `./${busid}/vite/${wcid}/`;
         iframe.id = 'inner-sandbox-container';
         iframe.setAttribute('style', 'width: 100%; height: 100vh; border: 0; outline: 0;');
         iframe.dataset.busid = busid;
@@ -66,10 +59,11 @@ class SandboxClient {
   }
 }
 
+const isProd = window.location.protocol === 'https:';
 // 初始化 service worker 并动态创建 iframe 用于加载被构建应用的页面
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    const wb = new Workbox('/serviceWorker.js',{
+    const wb = new Workbox(`${isProd ? '/vitesandbox-client' : ''}/serviceWorker.js`,{
       updateViaCache: 'none',
       type: 'module'
     });
@@ -83,8 +77,7 @@ let sandboxClient;
 // 接收调用沙箱的平台传来的需要构建的项目代码
 window.addEventListener('message', ({ data }) => {
   if(data?.type === 'compile-esm'){
-    const { files: _files, busid: _busid, wcid: _wcid } = data.payload;
-    const files = transformFiles(_files);
+    const { files, busid: _busid, wcid: _wcid } = data.payload;
     if (sandboxClient) {
       sandboxClient.updatePreview(files);
     } else {

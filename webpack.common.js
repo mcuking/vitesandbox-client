@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     chunkFilename: 'static/js/[name].[contenthash:9].chunk.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
     clean: true,
   },
   plugins: [

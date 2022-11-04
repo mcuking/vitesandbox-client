@@ -595,7 +595,7 @@ class Channel {
   }
 }
 
-const [, busid] = /^https?:\/\/[^/]*\/([^/]{32})\/vite\/([^/]*)(\/.*)$/.exec(window.location.href);
+const [, busid] = /^https?:\/\/[^]*\/([^/]{32})\/vite\/([^/]*)(\/.*)$/.exec(window.location.href);
 
 const channel = new Channel(busid);
 
