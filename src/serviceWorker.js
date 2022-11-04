@@ -6,9 +6,9 @@ import Channel from '$utils/channel';
 const ChannelMap = new Map();
 
 registerRoute(
-  /^https?:\/\/[^/]*\/([^/]{32})\/vite\/([^/]*)(\/.*)$/,
+  /^https?:\/\/[^]*\/([^/]{32})\/vite\/([^/]*)(\/.*)$/,
   async ({ request, url, params }) => {
-    const [busid, wcid, pathname] = params;
+    const [ busid, wcid, pathname ] = params;
     const { href } = url;
     
     let channel = ChannelMap.get(busid);
@@ -39,7 +39,7 @@ registerRoute(
 );
 
 registerRoute(
-  /^https:\/\/vitesandbox\.fn\..*\.com\/static\/js\//,
+  /^https:\/\/mcuking\.github\.io\/vitesandbox-client\/static\/js\//,
   new CacheFirst({
     cacheName: 'vite-static-root-cache',
     plugins: [

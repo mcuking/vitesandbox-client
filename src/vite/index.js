@@ -178,7 +178,6 @@ channel.subscribe('vite-reload-request', async({ reqId, wcid }) => {
 
 // 根据 service worker 捕获的请求编译对应代码并返回
 channel.subscribe('serve-request', async({ reqId, pathname, rawUrl, accept }) => {
-  console.log('changeRoute2', pathname);
   // 当 path 以 / 结尾时，则均指向 index.html
   if (pathname.endsWith('/')) {
     pathname = '/index.html';

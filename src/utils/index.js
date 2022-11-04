@@ -6,7 +6,6 @@ const packageJsonPath = '/package.json';
 const sandboxConfigJsonPath = '/sandbox.config.json';
 
 const depBaseUrl = 'https://esm.sh';
-// const depBaseUrl = 'http://localhost:8088';
 
 // 'react@16.8.0/cjs/react.development.js' -> 
 // ['react/cjs/react.development.js', 'react', '16.8.0', '/cjs/react.development.js', ...]
@@ -14,7 +13,7 @@ const dependencyNameRE = /^((?:@[^/A-Z:]+\/)?[^@/._A-Z:~)('!*][^@/A-Z:~)('!*]*)(
 
 const configFileNames = ['tsconfig.json', 'jsconfig.json'];
 
-const externalDependencies = ['react', 'react-dom', '@music/tango-boot', 'styled-components'];
+const externalDependencies = ['react', 'react-dom'];
 
 const setDomainCode = `
   try {
