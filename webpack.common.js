@@ -32,6 +32,8 @@ module.exports = {
     })
   ],
   module: {
+    unknownContextCritical : false,
+    exprContextCritical: false,
     rules: [
       {
         resourceQuery: /raw/,
